@@ -1,29 +1,26 @@
-
+const TYPE = {
+    CHANGE_VALUE: 'change-value',
+    CHANGE_COLOR:'change-color'
+}
 function stateReducer(state, action) {
-    switch (action) {
-        case 'Increment':
+    switch (action.type) {
+        case TYPE.CHANGE_VALUE:
             return {
                 ...state,
-                value: state.value + 1
+                value: state.value + action.payload
             }
-        case 'Decrement':
+        case TYPE.CHANGE_COLOR:
             return {
                 ...state,
-                value: state.value - 1
-            }
-        case 'green':
-            return {
-                ...state,
-                color: 'green'
-            }
-        case 'blue':
-            return {
-                ...state,
-                color: 'blue'
+                color: action.payload
             }
         default:
-            break
+            return state
     }
 }
 
 export default stateReducer
+
+export {
+    TYPE
+}

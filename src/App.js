@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import { useReducer, useState } from 'react';
-import stateReducer from './reducers/reducer';
+import { useReducer } from 'react';
+import stateReducer, { TYPE } from './reducers/reducer';
 
 const initialState = {
   value: 0,
@@ -14,17 +13,29 @@ function App() {
   return (
     <div className="App">
       <button onClick={() => {
-        dispatch('Increment')
+        dispatch({
+          type: TYPE.CHANGE_VALUE,
+          payload:1
+        })
       }} style={{ background: state.color }} className='btn mt-3'>Increment</button>
       <h4>{state.value}</h4>
       <button onClick={() => {
-        dispatch('Decrement')
+        dispatch({
+          type: TYPE.CHANGE_VALUE,
+          payload:-1
+        })
       }} style={{ background: state.color }} className='btn mt-3'>Decrement</button>
       <button onClick={() => {
-        dispatch('green')
+        dispatch({
+          type: TYPE.CHANGE_COLOR,
+          payload:'green'
+        })
       }} className='btn mt-3 btn-success'>green</button>
       <button onClick={() => {
-        dispatch('blue')
+        dispatch({
+          type: TYPE.CHANGE_COLOR,
+          payload:'blue'
+        })
       }} className='btn mt-3 btn-primary'>blue</button>
     </div>
   );
